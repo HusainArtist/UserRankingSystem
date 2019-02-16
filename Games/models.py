@@ -28,11 +28,17 @@ class Game_Levels(models.Model):
 	max_score_assigned = models.CharField(max_length=200, blank = True, null=True)
 	created_at = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now)
 
+	def __str__(self):
+	    return str(self.level_name)
 
-class Game_User(User):
+	class Meta:
+	    verbose_name_plural = "Game Levels"
 
-    # user_name = models.CharField(max_length=200, blank = True, null=True)
-    # user_email = models.CharField(max_length=40, blank = True, null=True)
+
+class Game_User(models.Model):
+
+    user_name = models.CharField(max_length=200, blank = True, null=True)
+    user_email = models.CharField(max_length=40, blank = True, null=True)
     user_mobile = models.CharField(max_length=20, blank = True, null=True)
 
     profile_photo = models.FileField(storage=fs, upload_to = 'profile_photo/', blank = True, null = True)
@@ -42,6 +48,11 @@ class Game_User(User):
     is_deleted = models.BooleanField(default = False)
     created_at = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now)
 
+    def __str__(self):
+        return str(self.pk)
+
+    class Meta:
+        verbose_name_plural = "Game User"
 
 
 class GameLevelsRankings(models.Model):
@@ -51,8 +62,18 @@ class GameLevelsRankings(models.Model):
 	overall_ranking  = models.CharField(max_length=200, blank = True, null=True)
 	level_score = models.CharField(max_length=200, blank = True, null=True)
 	time_taken = models.CharField(max_length=20, blank = True, null=True)
+	active = models.BooleanField(default = False)
+
 	created_at = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now)
 
+	def get_active_level(game_user):
+		return GameLevelsRankings.objects.get(game_user = game_user, active = True)
+
+	def __str__(self):
+	    return str(self.game_user) + "-" + str(self.level_reached.level_name)
+
+	class Meta:
+	    verbose_name_plural = "Game Level Rankings"
 
 
 # class GameOverallRankingData(models.Model):
