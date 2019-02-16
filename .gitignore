@@ -1,0 +1,5 @@
+venv/
+db.sqlite3
+media/
+static_cdn/
+*/migrations/*
