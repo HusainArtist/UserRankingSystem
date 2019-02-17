@@ -28,29 +28,18 @@ import rest_framework
 from django.contrib import admin
 from django.conf.urls import include, url
 from UserRankingSystem.swagger_schema import SwaggerSchemaView
-# import Games.urls 
-# import accounts.urls 
-# from django.urls import path
-
-# schema_view = get_swagger_view(title='Pastebin API')
-
-# schema_view = get_schema_view(
-#     title='Server Monitoring API',
-#     url='https://www.example.org/api/',
-#     renderer_classes=[JSONOpenAPIRenderer]
-# )
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    # url('Games/', include('Games.urls')),
     url('admin/', admin.site.urls),
-    # url('^schema.json$', schema_view),
-    # url(r'docs/', schema_view),
+
 	url(r'^docs/', SwaggerSchemaView.as_view()),
     url(r'^api/', include('Games.urls', namespace='games_urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # url(r'^api-auth/', include('django.contrib.auth.urls')),
-    url(r'^accounts/', include('accounts.urls'))
-    # url(r'^docs/', include('rest_framework_swagger.urls', namespace='rest_framework'))
-    # url(r'^docs/', include('rest_framework_swagger.urls')),
+
+    url(r'^signup/', include('authentication.urls')),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+
+   
 ]

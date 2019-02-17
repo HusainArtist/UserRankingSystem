@@ -10,7 +10,8 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             'user_name', 
             'user_email', 
             'user_mobile',
+            'user_country',
             'profile_photo',
-            'current_level',
             'is_deleted',
+            'created_at',
         )

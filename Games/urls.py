@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^add_edit_user_profile/', add_edit_user_profile, name='get_user_profile'),
     url(r'^get_user_profile/', get_user_profile, name='get_user_profile'),
     url(r'^calculate_rank_on_game_completion/', calculate_rank_on_game_completion, name='get_user_profile'),
+    url(r'^script_to_mail_weekly_progress/', script_to_mail_weekly_progress, name='script_to_mail_weekly_progress'),
     # url(r'^swagger/', SwaggerSchemaView.as_view()),
     # url(r'^$', HomePageView.as_view(),name='home'),
     # url(r'^ajax_autocomplete/$', autocomplete, name='ajax_autocomplete'),

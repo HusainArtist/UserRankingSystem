@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     # 'rest_framework.authtoken',
     'Games',
     'storages',
-    'accounts'
+    'authentication',
 ]
+
+# EMAIL_BACKEND = 'django_ses.SFSBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
